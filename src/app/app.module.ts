@@ -6,13 +6,17 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { CardRestaurantComponent } from './restaurants/card-restaurant/card-restaurant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    RestaurantsComponent,
+    CardRestaurantComponent
   ],
   imports: [
     BrowserModule,
