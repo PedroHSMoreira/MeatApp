@@ -1,16 +1,16 @@
 <header class="main-header">
-    <nav class="navbar navbar-expand-lg navbar-light text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand text-white" [routerLink]="['/']"><b>Meat</b></a>
+            <a class="navbar-brand" [routerLink]="['/']"><b>Meat</b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div routerLinkActive="active" class="navbar-nav">
-                    <a class="nav-item nav-link text-light" [routerLink]="['/restaurants']">Restaurantes <span
+            <div  class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div  class="navbar-nav">
+                    <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/restaurants']">Restaurantes <span
                             class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link text-light" [routerLink]="['/about']">Sobre</a>
+                    <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/about']">Sobre</a>
                 </div>
             </div>
         </div>
