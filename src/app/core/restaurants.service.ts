@@ -1,31 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Restaurant } from '../restaurants/restaurant.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+const URL = 'http://localhost:3000'
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantsService {
 
-  restaurants: Restaurant[] = [{
-    id: "bread-bakery",
-    name: "Bread & Bakery",
-    category: "Bakery",
-    deliveryEstimate: "25m",
-    rating: 4.9,
-    imagePath: "assets/img/restaurants/breadbakery.png",
-  },
-  {
-    id: "burger-house",
-    name: "Burger House",
-    category: "Hamburgers",
-    deliveryEstimate: "100m",
-    rating: 3.5,
-    imagePath: "assets/img/restaurants/burgerhouse.png",
-  }]
+  constructor(private http: HttpClient ) { }
 
-  constructor() { }
-
-  getRestaurants(): Restaurant[] {
-    return this.restaurants
+  getRestaurants(): Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(`${URL}/restaurants`).pipe(
+      map(res => { return res })
+    )
   }
 }
