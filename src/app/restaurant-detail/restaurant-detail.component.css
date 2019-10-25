@@ -1,3 +1,10 @@
 mt-menu {
-    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 991.98px) {
+    mt-menu {
+        display: flex;
+        flex-wrap: nowrap;
+    }
 }

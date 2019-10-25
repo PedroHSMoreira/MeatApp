@@ -20,4 +20,11 @@ export class RestaurantsService {
       catchError(ErrorHandler.handleError)
     )
   }
+
+  getRestaurantById(id: string): Observable<Restaurant> {
+    return this.http.get<Restaurant>(`${URL}/restaurants/${id}`).pipe(
+      map(res => { return res }),
+      catchError(ErrorHandler.handleError)
+    )
+  }
 }

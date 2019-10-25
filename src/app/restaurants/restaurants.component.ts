@@ -11,10 +11,10 @@ export class RestaurantsComponent implements OnInit {
 
   restaurants: Restaurant[]
 
-  constructor(private restService: RestaurantsService) { }
+  constructor(private api: RestaurantsService) { }
 
   ngOnInit() {
-     this.restService.getRestaurants().subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
+     this.api.getRestaurants().subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
   }
 
 }
