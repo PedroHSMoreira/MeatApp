@@ -3,6 +3,7 @@ import { RestaurantsService } from '../core/restaurants.service';
 
 import { Restaurant } from '../restaurants/restaurant.model';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RestaurantDetailComponent implements OnInit {
 
   ngOnInit() {
     this.api.getRestaurantById(this.route.snapshot.params['id'])
+    .pipe(take(1))
     .subscribe(restaurant => this.restaurant = restaurant)
   }
 

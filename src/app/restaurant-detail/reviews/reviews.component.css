@@ -1,0 +1,9 @@
+.content-pages{
+    flex-wrap: wrap;
+}
+
+@media (min-width: 991.98px) {
+    .content-pages {
+        display: flex;
+    }
+}

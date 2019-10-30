@@ -27,4 +27,11 @@ export class RestaurantsService {
       catchError(ErrorHandler.handleError)
     )
   }
+
+  getRestaurantReviews(id: string): Observable<any> {
+    return this.http.get(`${URL}/restaurants/${id}/reviews`).pipe(
+      map(res => { return res }),
+      catchError(ErrorHandler.handleError)
+    )
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant.model';
 import { RestaurantsService } from '../core/restaurants.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'mt-restaurants',
@@ -14,7 +15,9 @@ export class RestaurantsComponent implements OnInit {
   constructor(private api: RestaurantsService) { }
 
   ngOnInit() {
-     this.api.getRestaurants().subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
+     this.api.getRestaurants()
+     .pipe(take(1))
+     .subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
   }
 
 }
