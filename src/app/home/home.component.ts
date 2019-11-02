@@ -7,6 +7,7 @@ import { AnimationOptions } from 'ngx-lottie';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  
 options: AnimationOptions = {
   path: '../assets/animations/cooking.json',
   renderer: 'canvas',
