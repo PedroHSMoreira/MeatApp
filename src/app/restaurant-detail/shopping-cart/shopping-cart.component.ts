@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'mt-shopping-cart',
   templateUrl: './shopping-cart.component.html',

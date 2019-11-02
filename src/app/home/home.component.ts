@@ -14,7 +14,7 @@ options: AnimationOptions = {
   loop: false
 }
 animationCreated(animationItem: AnimationItem): void {
-  console.log(animationItem);
+  animationItem.setSpeed(0.5)
 } 
 
 styles: Partial<CSSStyleDeclaration> = {

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ErrorHandler } from '../app-error-handler';
+import { MenuItem } from '../restaurant-detail/menu-item/menu-item.model';
 
 const URL = 'http://localhost:3000'
 
@@ -30,6 +31,13 @@ export class RestaurantsService {
 
   getRestaurantReviews(id: string): Observable<any> {
     return this.http.get(`${URL}/restaurants/${id}/reviews`).pipe(
+      map(res => { return res }),
+      catchError(ErrorHandler.handleError)
+    )
+  }
+
+  menuOfRestaurants(id: string): Observable<MenuItem[]> {
+    return this.http.get<MenuItem[]>(`${URL}/restaurant/${id}/menu`).pipe(
       map(res => { return res }),
       catchError(ErrorHandler.handleError)
     )
