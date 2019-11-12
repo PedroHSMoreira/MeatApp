@@ -19,8 +19,8 @@ export class ShoppingCartComponent implements OnInit {
     autoplay: true,
     loop: true
   }
- 
-  
+
+
   styles: Partial<CSSStyleDeclaration> = {
     maxWidth: '100px',
     margin: '0 auto'
@@ -30,7 +30,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private serviceCart: ShoppingCartService) { }
 
   ngOnInit() {
-    console.log(this.items)
+
   }
 
   items(): CartItem[] {
