@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/core/shopping-cart.service';
-import { CartItem } from './cart-item.model';
+import { CartItem } from '../../models/cart-item.model';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
-import { MenuItem } from '../menu-item/menu-item.model';
+import { MenuItem } from '../../models/menu-item.model';
 
 
 @Component({

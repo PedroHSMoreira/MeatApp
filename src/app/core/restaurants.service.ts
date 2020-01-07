@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Restaurant } from '../restaurants/restaurant.model';
+import { Restaurant } from '../models/restaurant.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ErrorHandler } from '../app-error-handler';
-import { MenuItem } from '../restaurant-detail/menu-item/menu-item.model';
+import { MenuItem } from '../models/menu-item.model';
 
 const URL = 'http://localhost:3000'
 
