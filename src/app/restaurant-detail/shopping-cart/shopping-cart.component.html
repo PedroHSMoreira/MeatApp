@@ -21,7 +21,7 @@
 
                         <td class="text-right">{{ item.value() | currency: 'BRL' }}</td>
                         <td class="text-right">
-                            <a (click)="removeItem(item)" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                            <a (click)="decreaseQty(item)" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                         </td>
                     </tr>
                     <tr>

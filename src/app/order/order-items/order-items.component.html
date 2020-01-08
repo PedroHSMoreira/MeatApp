@@ -1,8 +1,8 @@
-<div *ngIf="!items">
+<div *ngIf="items.length === 0">
     Não há items em seu carrinho. Que tal começar por <a [routerLink]="['/restaurants']">aqui</a>
 </div>
 
-<table class="table table-striped" *ngIf="items">
+<table class="table table-striped" *ngIf="items.length > 0">
     <thead>
         <tr>
             <th class="text-center">Quantidade</th>
@@ -15,7 +15,7 @@
     <tbody>
         <tr *ngFor="let item of items">
             <td class="text-center">
-                <a (click)="emitDrecreaseQty(item)" class="btn btn-sm"><i class="fa fa-minus"></i></a>
+                <a (click)="emitDecreaseQty(item)" class="btn btn-sm"><i class="fa fa-minus"></i></a>
                 {{ item.quantity }}
                 <a (click)="emitIncreaseQty(item)" class="btn btn-sm"><i class="fa fa-plus"></i></a>
             </td>

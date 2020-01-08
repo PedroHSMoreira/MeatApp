@@ -20,13 +20,14 @@
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Endereço">
-                        <input class="form-control" name="address" ngModel required minlength="5" placeholder="Endereço" autocomplete="off">
+                        <input class="form-control" name="address" ngModel required minlength="5" placeholder="Endereço"
+                            autocomplete="off">
                     </mt-input-container>
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     <mt-input-container errorMessage="Campo obrigatório" label="Número">
-                        <input type="text" class="form-control" name="number" ngModel required pattern="^[0-9]*$" placeholder="Número"
-                            autocomplete="off">
+                        <input type="text" class="form-control" name="number" ngModel required pattern="^[0-9]*$"
+                            placeholder="Número" autocomplete="off">
                     </mt-input-container>
                 </div>
                 <div class="col-sm-3 col-xs-6">
@@ -44,7 +45,8 @@
                     <p class="lead">Itens do Pedido:</p>
                 </div>
                 <div class="col-xs-12 table-responsive">
-                   <mt-order-items></mt-order-items>
+                    <mt-order-items [items]="cartItems()" (increaseQty)="increaseQty($event)"
+                        (decreaseQty)="decreaseQty($event)" (remove)="remove($event)"></mt-order-items>
                 </div>
                 <!-- /.col -->
             </div>

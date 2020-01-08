@@ -38,12 +38,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
 
-  removeItem(item: any) {
-    this.serviceCart.removeItem(item)
-  }
-
   addItem(item: MenuItem) {
     this.serviceCart.addItem(item)
+  }
+
+  decreaseQty(item: CartItem) {
+    this.serviceCart.decreaseQty(item)
   }
 
   clear() {
