@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RadioOption } from '../models/radio-option.model';
 import { OrderService } from '../core/order.service';
 import { CartItem } from '../models/cart-item.model';
+import { Order, OrderItem } from '../models/order.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mt-order',
@@ -10,15 +12,20 @@ import { CartItem } from '../models/cart-item.model';
 })
 export class OrderComponent implements OnInit {
 
+  delivery: number = 8
   paymentOptions: RadioOption[] = [
     { label: 'Dinheiro', value: 'MON' },
     { label: 'Cartão de Débito', value: 'DEB' },
     { label: 'Cartão de Cŕedito', value: 'CRE' },
     { label: 'Cartão Refeição', value: 'REF' },
   ]
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  itemsValue(): number {
+    return this.orderService.itemsValue()
   }
 
   cartItems() {
@@ -35,5 +42,14 @@ export class OrderComponent implements OnInit {
 
   remove(item: CartItem) {
     this.orderService.remove(item)
+  }
+
+  checkOrder(order: Order) {
+    order.orderItems = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
+    this.orderService.checkOrder(order).subscribe( (orderId: string) => {
+      this.router.navigate(['/order-summary'])
+      this.orderService.clear()
+    })
+    console.log(order)
   }
 }
