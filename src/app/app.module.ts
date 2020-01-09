@@ -4,10 +4,12 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { LottieModule } from 'ngx-lottie';
 
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from './app-routing.module';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { CardRestaurantComponent } from './restaurants/card-restaurant/card-restaurant.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
@@ -16,8 +18,7 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
+
 
 
 export function playerFactory() {
@@ -42,8 +43,7 @@ export function playerFactory() {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CoreModule,
-    SharedModule,
+    SharedModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [{provide: LOCALE_ID, useValue: 'en-US'}],
