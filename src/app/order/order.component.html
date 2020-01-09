@@ -22,16 +22,19 @@
                     </mt-input-container>
                 </div>
                 <div class="col-sm-3 col-xs-6">
-                    <mt-input-container errorMessage="Campo obrigatório" label="Email">
+                    <mt-input-container errorMessage="Campo inválido" label="Email">
                         <input type="text" class="form-control" formControlName="email" placeholder="Email"
                             autocomplete="off">
                     </mt-input-container>
                 </div>
                 <div class="col-sm-3 col-xs-6">
-                    <mt-input-container errorMessage="Campo obrigatório" label="Email">
+                    <mt-input-container errorMessage="Campo inválido" label="Email">
                         <input type="text" class="form-control" formControlName="emailConfirmation"
                             placeholder="Confirmação do email" autocomplete="off">
                     </mt-input-container>
+                    <span class="help-block pull-left has-error-block" *ngIf="orderForm.hasError('emailsNotMatch')"><i
+                            class="fa fa-remove"></i>
+                        Emails não conferem</span>
                 </div>
             </div>
 
@@ -96,8 +99,9 @@
 
         <div class="row flex-row-reverse">
             <div class="col-xs-12">
-                <button (click)="checkOrder(orderForm.value)" [disabled]="!orderForm.valid || (cartItems().length === 0)"
-                    href="order-summary.html" class="btn btn-success "><i class="fa fa-credit-card"></i>
+                <button (click)="checkOrder(orderForm.value)"
+                    [disabled]="!orderForm.valid || (cartItems().length === 0)" href="order-summary.html"
+                    class="btn btn-success "><i class="fa fa-credit-card"></i>
                     Concluir Pedido
                 </button>
             </div>

@@ -4,7 +4,7 @@ import { OrderService } from '../core/order.service';
 import { CartItem } from '../models/cart-item.model';
 import { Order, OrderItem } from '../models/order.model';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'mt-order',
@@ -33,7 +33,22 @@ export class OrderComponent implements OnInit {
       number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
       optionalAddress: '',
       paymentOption: ['', [Validators.required]]
-    })
+    }, {validator: OrderComponent.equalsTo})
+  }
+
+  static equalsTo(group: AbstractControl): { [key: string]: boolean } {
+    const email = group.get('email')
+    const emailConfirmation = group.get('emailConfirmation')
+
+    if (!email || !emailConfirmation) {
+      return undefined
+    }
+
+    if (email.value !== emailConfirmation.value && emailConfirmation.dirty) {
+      return { emailsNotMatch: true }
+    }
+
+    return undefined
   }
 
   itemsValue(): number {
@@ -58,7 +73,7 @@ export class OrderComponent implements OnInit {
 
   checkOrder(order: Order) {
     order.orderItems = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
-    this.orderService.checkOrder(order).subscribe( (orderId: string) => {
+    this.orderService.checkOrder(order).subscribe((orderId: string) => {
       this.router.navigate(['/order-summary'])
       this.orderService.clear()
     })
