@@ -15,9 +15,6 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import { OrderComponent } from './order/order.component';
-import { OrderItemsComponent } from './order/order-items/order-items.component';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -38,9 +35,6 @@ export function playerFactory() {
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderComponent,
-    OrderItemsComponent,
-    DeliveryCostsComponent,
     OrderSummaryComponent,
   ],
   imports: [

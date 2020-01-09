@@ -21,8 +21,8 @@ const routes: Routes = [
       { path: 'reviews', component: ReviewsComponent }
     ]
   },
-  { path: 'order', component: OrderComponent },
-  { path: 'order-summary', component: OrderSummaryComponent},
+  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
+  { path: 'order-summary', component: OrderSummaryComponent },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) }
 ]
 
