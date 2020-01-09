@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 
 import { LottieModule } from 'ngx-lottie';
@@ -17,6 +17,7 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 
 export function playerFactory() {
@@ -41,10 +42,11 @@ export function playerFactory() {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    CoreModule,
     SharedModule,
     LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'en-US'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
