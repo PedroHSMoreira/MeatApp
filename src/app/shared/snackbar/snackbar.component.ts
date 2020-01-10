@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NotificationService } from 'src/app/core/notification.service';
-import { take } from 'rxjs/operators';
+import { take, tap, switchMap } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 @Component({
@@ -31,12 +31,13 @@ export class SnackbarComponent implements OnInit {
   constructor(private notification: NotificationService) { }
 
   ngOnInit() {
-    this.notification.notifier
-      .subscribe(message => {
+    this.notification.notifier.pipe(
+      tap(message => {
         this.message = message
         this.snackVisibility = 'visible'
-        timer(3000)
-          .subscribe(timer => this.snackVisibility = 'hidden')
-      })
+      }),
+      switchMap(message => timer(3000))
+    )
+      .subscribe(timer => this.snackVisibility = 'hidden')
   }
 }
