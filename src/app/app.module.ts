@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { LottieModule } from 'ngx-lottie';
 
@@ -41,12 +42,13 @@ export function playerFactory() {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     SharedModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'en-US'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

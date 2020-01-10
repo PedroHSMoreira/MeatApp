@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+
+import { NotificationService } from './notification.service';
+
 import { CartItem } from '../models/cart-item.model';
 import { MenuItem } from '../models/menu-item.model';
 
@@ -9,7 +12,7 @@ export class ShoppingCartService {
   items: CartItem[] = []
 
 
-  constructor() { }
+  constructor(private notification: NotificationService) { }
 
   addItem(item: MenuItem) {
     let foundItem = this.items.find(mItem => mItem.menuItem.id == item.id)
@@ -18,6 +21,7 @@ export class ShoppingCartService {
     } else {
       this.items.push(new CartItem(item))
     }
+    this.notification.notify(`O item ${item.name} foi adicionado no carrinho!`)
   }
 
   increaseQty(item: CartItem) {
@@ -35,6 +39,7 @@ export class ShoppingCartService {
 
   removeItem(item: CartItem) {
     this.items.splice(this.items.indexOf(item), 1)
+    this.notification.notify(`O item ${item.menuItem.name} foi removido do carrinho!`)
   }
 
   total(): number {
