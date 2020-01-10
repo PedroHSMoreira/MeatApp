@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { LottieModule } from 'ngx-lottie';
 
@@ -50,7 +51,7 @@ export function playerFactory() {
     SharedModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'en-US' }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },{ provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
