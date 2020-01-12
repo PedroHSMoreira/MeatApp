@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ShoppingCartService } from './shopping-cart.service';
 import { CartItem } from '../models/cart-item.model';
-import { Order, OrderItem } from '../models/order.model';
+import { Order } from '../models/order.model';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 const URL = 'http://localhost:3000'
 
@@ -35,12 +34,8 @@ export class OrderService {
     this.cartService.removeItem(item)
   }
 
-  checkOrder(order: Order): Observable<string> {
-    const headers =  new HttpHeaders()
-    headers.append('Content-Type', 'application/json')
-    return this.http.post<Order>(`${URL}/orders`, order, {headers: headers}).pipe(
-      map(res => JSON.stringify(res))
-    )
+  checkOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${URL}/orders`, order)
   }
 
   clear() {

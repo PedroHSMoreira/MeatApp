@@ -50,11 +50,11 @@ export class RestaurantsComponent implements OnInit {
         catchError(error => from([]))
       ))
     )
-      .subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
+      .subscribe(restaurants => this.restaurants = restaurants, err => alert(JSON.stringify(err)))
 
     this.api.getRestaurants()
       .pipe(take(1))
-      .subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
+      .subscribe(restaurants => this.restaurants = restaurants, err => alert(JSON.stringify(err)))
   }
 
   toggleSearchBar() {
