@@ -263,3 +263,12 @@ body {
     color: #dd4b39;
   }
   
+  .search-link {
+    cursor: pointer;
+    color: #555;
+  }
+
+  .search-bar {
+    opacity: 0;
+    max-height: 0px;
+  }
