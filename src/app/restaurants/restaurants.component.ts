@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Restaurant } from '../models/restaurant.model';
-import { RestaurantsService } from '../core/restaurants.service';
-import { take, switchMap } from 'rxjs/operators';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+import { Restaurant } from '../models/restaurant.model';
+import { RestaurantsService } from '../core/restaurants.service';
+
+import { take, switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'mt-restaurants',
@@ -41,7 +44,11 @@ export class RestaurantsComponent implements OnInit {
     })
 
     this.searchControl.valueChanges.pipe(
-      switchMap(searchTerm => this.api.getRestaurants(searchTerm))
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(searchTerm => this.api.getRestaurants(searchTerm).pipe(
+        catchError(error => from([]))
+      ))
     )
       .subscribe(restaurants => this.restaurants = restaurants, err => alert(err))
 
