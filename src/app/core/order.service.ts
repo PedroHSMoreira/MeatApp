@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+
 import { ShoppingCartService } from './shopping-cart.service';
+import { LoginService } from './login.service';
+
 import { CartItem } from '../models/cart-item.model';
 import { Order } from '../models/order.model';
+
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const URL = 'https://localhost:3001'
 
@@ -12,7 +16,7 @@ const URL = 'https://localhost:3001'
 })
 export class OrderService {
 
-  constructor(private cartService: ShoppingCartService, private http: HttpClient) { }
+  constructor(private cartService: ShoppingCartService, private http: HttpClient, private loginService: LoginService) { }
 
   itemsValue(): number {
     return this.cartService.total()
@@ -35,7 +39,11 @@ export class OrderService {
   }
 
   checkOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${URL}/orders`, order)
+    let headers = new HttpHeaders()
+    if (this.loginService.isLoggedIn()) {
+      headers = headers.set('Authorization', `Bearer ${this.loginService.user.accessToken}`)
+    }
+    return this.http.post<Order>(`${URL}/orders`, order, { headers })
   }
 
   clear() {

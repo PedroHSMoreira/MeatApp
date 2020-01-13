@@ -11,6 +11,7 @@ import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { RatingComponent } from './rating/rating.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { LoginService } from '../core/login.service';
 
 
 
@@ -43,10 +44,11 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         RestaurantsService,
-        ShoppingCartService, 
+        ShoppingCartService,
         OrderService,
-        NotificationService
+        NotificationService,
+        LoginService
       ]
     }
   }
- }
+}
