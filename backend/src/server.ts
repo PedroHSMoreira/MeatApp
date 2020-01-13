@@ -8,12 +8,14 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
 import AuthMiddleware from "./auth";
+import HandleAthorization from './authz'
 
 server.use(middlewares)
 
 server.use(jsonServer.bodyParser)
 
 server.post('/login', AuthMiddleware.handleAuthentication)
+server.use('/orders', HandleAthorization.handleAuthorization)
 
 server.use(router)
 
