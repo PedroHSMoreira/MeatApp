@@ -13,6 +13,7 @@ import { RatingComponent } from './rating/rating.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { LoginService } from '../core/login.service';
 import { LoggedinGuard } from '../core/guards/loggedin.guard';
+import { LeaveOrderGuard } from '../core/guards/leave-order.guard';
 
 
 
@@ -49,7 +50,8 @@ export class SharedModule {
         OrderService,
         NotificationService,
         LoginService,
-        LoggedinGuard
+        LoggedinGuard,
+        LeaveOrderGuard
       ]
     }
   }

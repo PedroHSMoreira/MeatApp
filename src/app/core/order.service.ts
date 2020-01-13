@@ -8,6 +8,7 @@ import { Order } from '../models/order.model';
 
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 const URL = 'https://localhost:3001'
 
@@ -43,7 +44,9 @@ export class OrderService {
     if (this.loginService.isLoggedIn()) {
       headers = headers.set('Authorization', `Bearer ${this.loginService.user.accessToken}`)
     }
-    return this.http.post<Order>(`${URL}/orders`, order, { headers })
+    return this.http.post<Order>(`${URL}/orders`, order, { headers }).pipe(
+      tap(order => order.orderId)
+    )
   }
 
   clear() {

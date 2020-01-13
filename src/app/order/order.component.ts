@@ -5,6 +5,7 @@ import { CartItem } from '../models/cart-item.model';
 import { Order, OrderItem } from '../models/order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'mt-order',
@@ -14,6 +15,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 export class OrderComponent implements OnInit {
 
   orderForm: FormGroup
+  orderId: Order
 
   delivery: number = 8
   paymentOptions: RadioOption[] = [
@@ -33,7 +35,7 @@ export class OrderComponent implements OnInit {
       number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
       optionalAddress: '',
       paymentOption: ['', [Validators.required]]
-    }, {validator: OrderComponent.equalsTo})
+    }, { validator: OrderComponent.equalsTo })
   }
 
   static equalsTo(group: AbstractControl): { [key: string]: boolean } {
@@ -71,12 +73,19 @@ export class OrderComponent implements OnInit {
     this.orderService.remove(item)
   }
 
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined
+  }
+
   checkOrder(order: Order) {
     order.orderItems = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
-    this.orderService.checkOrder(order).subscribe((orderId: Order) => {
+    this.orderService.checkOrder(order).pipe(
+      tap((orderId: Order) => {
+        this.orderId = orderId
+      })
+    ).subscribe((orderId: Order) => {
       this.router.navigate(['/order-summary'])
       this.orderService.clear()
     })
-    console.log(order)
   }
 }

@@ -6,13 +6,14 @@
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div  class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div  class="navbar-nav">
-                    <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/restaurants']">Restaurantes <span
-                            class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/restaurants']">Restaurantes
+                        <span class="sr-only">(current)</span></a>
                     <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/about']">Sobre</a>
                 </div>
             </div>
+            <mt-user-detail></mt-user-detail>
         </div>
     </nav>
 </header>
