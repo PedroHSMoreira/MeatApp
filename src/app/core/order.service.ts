@@ -5,7 +5,7 @@ import { Order } from '../models/order.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const URL = 'http://localhost:3000'
+const URL = 'https://localhost:3001'
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorHandler } from '../app-error-handler';
 import { MenuItem } from '../models/menu-item.model';
 
-const URL = 'http://localhost:3000'
+const URL = 'https://localhost:3001'
 
 @Injectable({
   providedIn: 'root'
