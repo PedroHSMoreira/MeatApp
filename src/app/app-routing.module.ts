@@ -11,11 +11,12 @@ import { OrderComponent } from './order/order.component';
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
+import { LoggedinGuard } from './core/guards/loggedin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'login/:to', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'restaurants', component: RestaurantsComponent },
   {
     path: 'restaurants/:id', component: RestaurantDetailComponent,
     children: [
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: 'reviews', component: ReviewsComponent }
     ]
   },
-  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
+  { path: 'restaurants', component: RestaurantsComponent },
+  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule), canLoad: [LoggedinGuard], canActivate: [LoggedinGuard] },
   { path: 'order-summary', component: OrderSummaryComponent },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: '**', component: NotFoundComponent }

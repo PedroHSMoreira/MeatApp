@@ -12,6 +12,7 @@ import { RadioComponent } from './radio/radio.component';
 import { RatingComponent } from './rating/rating.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { LoginService } from '../core/login.service';
+import { LoggedinGuard } from '../core/guards/loggedin.guard';
 
 
 
@@ -47,7 +48,8 @@ export class SharedModule {
         ShoppingCartService,
         OrderService,
         NotificationService,
-        LoginService
+        LoginService,
+        LoggedinGuard
       ]
     }
   }
