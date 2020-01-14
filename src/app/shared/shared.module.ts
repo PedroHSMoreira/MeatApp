@@ -14,6 +14,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 import { LoginService } from '../core/login.service';
 import { LoggedinGuard } from '../core/guards/loggedin.guard';
 import { LeaveOrderGuard } from '../core/guards/leave-order.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../core/helpers/auth.interceptor';
 
 
 
@@ -49,9 +51,9 @@ export class SharedModule {
         ShoppingCartService,
         OrderService,
         NotificationService,
-        LoginService,
         LoggedinGuard,
-        LeaveOrderGuard
+        LeaveOrderGuard,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
       ]
     }
   }

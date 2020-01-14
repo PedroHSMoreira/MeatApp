@@ -17,7 +17,7 @@ const URL = 'https://localhost:3001'
 })
 export class OrderService {
 
-  constructor(private cartService: ShoppingCartService, private http: HttpClient, private loginService: LoginService) { }
+  constructor(private cartService: ShoppingCartService, private http: HttpClient) { }
 
   itemsValue(): number {
     return this.cartService.total()
@@ -40,11 +40,7 @@ export class OrderService {
   }
 
   checkOrder(order: Order): Observable<Order> {
-    let headers = new HttpHeaders()
-    if (this.loginService.isLoggedIn()) {
-      headers = headers.set('Authorization', `Bearer ${this.loginService.user.accessToken}`)
-    }
-    return this.http.post<Order>(`${URL}/orders`, order, { headers }).pipe(
+    return this.http.post<Order>(`${URL}/orders`, order).pipe(
       tap(order => order.orderId)
     )
   }
