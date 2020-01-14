@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt'
+registerLocaleData(localePt, 'pt')
 
 import { LottieModule } from 'ngx-lottie';
 
@@ -58,7 +60,7 @@ export function playerFactory() {
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    { provide: LOCALE_ID, useValue: 'en-US' },
+    { provide: LOCALE_ID, useValue: 'pt' },
     { provide: ErrorHandler, useClass: ApplicationErrorHandler }],
   bootstrap: [AppComponent]
 })

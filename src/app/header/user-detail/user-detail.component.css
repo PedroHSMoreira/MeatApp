@@ -8,7 +8,6 @@ user-menu>span {
 
 .user-menu a {
     color: #fff;
-    cursor: pointer;
 }
 
 @media (max-width: 991px) {

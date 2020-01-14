@@ -28,7 +28,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
+      name: ['', { 
+        validators: [Validators.required, Validators.minLength(5)],
+        updateOn: 'blur' 
+      }],
       email: this.formBuilder.control('', [Validators.required, Validators.email]),
       emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.email]),
       address: ['', [Validators.required, Validators.minLength(5)]],
