@@ -1,20 +1,34 @@
-import { throwError } from 'rxjs'
+import { ErrorHandler, Injectable } from '@angular/core';
 import { HttpErrorResponse } from "@angular/common/http";
+import { NotificationService } from './core/notification.service';
+import { LoginService } from './core/login.service';
 
-export class ErrorHandler {
+@Injectable()
+export class ApplicationErrorHandler extends ErrorHandler {
 
-    static handleError(error: HttpErrorResponse | any) {
-        let errorMessage: string
+    constructor(private ns: NotificationService, private loginService: LoginService) {
+        super()
+    }
 
-        if (error instanceof HttpErrorResponse) {
-            console.log('teste')
-            const body = JSON.stringify(error.error)
-            errorMessage = `Erro ${error.status} ao acessar a URL ${error.url} - ${error.statusText || ''} ${body}`
-        } else {
-            errorMessage = error.toString()
-
+    handleError(errorReponse: HttpErrorResponse | any) {
+        if (errorReponse instanceof HttpErrorResponse) {
+            const message = errorReponse.error.message
+            switch (errorReponse.status) {
+                case 401:
+                    this.ns.notify(message || 'Não autorizado')
+                    this.loginService.handleLogin()
+                    break;
+                case 403:
+                    this.ns.notify(message || 'Não autorizado.')
+                    break;
+                case 404:
+                    this.ns.notify(message || 'Recurso não encontrado.')
+                    break;
+                case 500:
+                    this.ns.notify(message || 'Erro interno.')
+                    break;
+            }
         }
-        console.log(errorMessage)
-        return throwError(errorMessage)
+        super.handleError(errorReponse)
     }
 }
