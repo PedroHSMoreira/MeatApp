@@ -18,12 +18,12 @@ server.post('/login', AuthMiddleware.handleAuthentication)
 server.use('/orders', HandleAthorization.handleAuthorization)
 
 server.use(router)
-
+/*
 const options = {
     cert: fs.readFileSync('./keys/cert.pem'),
     key: fs.readFileSync('./keys/key.pem')
 }
-/* Caso de utilizar o protocolo https
+ Caso de utilizar o protocolo https
 https.createServer(options, server).listen(3001, () => {
     console.log('JSON Server is running')
 })
