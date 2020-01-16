@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "sucrase ./backend/src -d ./backend/dist --transforms typescript,imports && nodemon ./backend/dist/server.js "
+    "server": "sucrase ./backend/src -d ./backend/dist --transforms typescript,imports && nodemon ./backend/dist/server.js" 
   },
   "private": true,
   "dependencies": {

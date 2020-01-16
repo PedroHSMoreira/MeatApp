@@ -1,6 +1,13 @@
 version: '2.1'
 
 services:
+  server:
+    image: server
+    build: ./backend
+    ports: 
+      - 3001:3001
+    command:  npm run dev
+
   meatapp:
     image: meatapp
     build: .
