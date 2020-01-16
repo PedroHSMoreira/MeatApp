@@ -59,7 +59,6 @@ export function playerFactory() {
     LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: ErrorHandler, useClass: ApplicationErrorHandler }],
   bootstrap: [AppComponent]

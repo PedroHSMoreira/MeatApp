@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
-const URL = 'https://localhost:3001'
+const URL = 'http://localhost:3001'
 
 @Injectable({
   providedIn: 'root'

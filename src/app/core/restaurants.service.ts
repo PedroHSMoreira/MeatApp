@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MenuItem } from '../models/menu-item.model';
 
-const URL = 'https://localhost:3001'
+const URL = 'http://localhost:3001'
 
 @Injectable({
   providedIn: 'root'

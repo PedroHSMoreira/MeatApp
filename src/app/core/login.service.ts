@@ -5,7 +5,7 @@ import { User } from '../models/user.model';
 import { tap, filter } from 'rxjs/operators';
 import { Router, NavigationEnd } from '@angular/router';
 
-const URL = 'https://localhost:3001'
+const URL = 'http://localhost:3001'
 
 @Injectable({
   providedIn: 'root'

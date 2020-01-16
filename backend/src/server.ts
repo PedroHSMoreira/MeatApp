@@ -23,8 +23,11 @@ const options = {
     cert: fs.readFileSync('./keys/cert.pem'),
     key: fs.readFileSync('./keys/key.pem')
 }
-
-
+/* Caso de utilizar o protocolo https
 https.createServer(options, server).listen(3001, () => {
+    console.log('JSON Server is running')
+})
+*/
+server.listen(3001, () => {
     console.log('JSON Server is running')
 })

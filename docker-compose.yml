@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  meatapp:
+    image: meatapp
+    build: .
+    ports:
+      - 8081:80
